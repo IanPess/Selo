@@ -10,11 +10,10 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="#home" class="logo"><img class="logo-img" src="logo_bemreceber_turismo.png" alt=""></a>
             <ul class="nav-links">
                 <li><a href="#home">Início</a></li>
-                <li><a href="#about">Quem Somos</a></li>
-                <li><a href="#seal">Selo</a></li>
+                <li><a href="#seal">Quem Somos</a></li>
+                <li><a href="#about">Selo</a></li>
                 <li><a href="#companies">Empresas</a></li>
                 <li><a href="#partners">Parceiros</a></li>
                 <li><a href="#contact">Contato</a></li>
@@ -97,49 +96,72 @@
             <h2 class="section-title">Empresas Certificadas</h2>
             <p class="section-subtitle">Organizações que já conquistaram nosso selo de excelência</p>
             
-            <div class="companies-grid">
-                <div class="company-card">
-                    <div class="company-logo">🏢</div>
-                    <h3 class="company-name">TechCorp Solutions</h3>
-                    <p class="company-type">Tecnologia</p>
-                    <span class="seal-badge">Certificada 2024</span>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="company-card">
+                        <div class="company-logo">🏢</div>
+                        <h3 class="company-name">TechCorp Solutions</h3>
+                        <p class="company-type">Tecnologia</p>
+                        <span class="seal-badge">Certificada 2024</span>
+                    </div>
+
+                    <div class="company-card">
+                        <div class="company-logo">🏢</div>
+                        <h3 class="company-name">TechCorp Solutions</h3>
+                        <p class="company-type">Tecnologia</p>
+                        <span class="seal-badge">Certificada 2024</span>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-logo">🏭</div>
+                        <h3 class="company-name">Industrial Prime</h3>
+                        <p class="company-type">Manufatura</p>
+                        <span class="seal-badge">Certificada 2024</span>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-logo">🏥</div>
+                        <h3 class="company-name">HealthCare Plus</h3>
+                        <p class="company-type">Saúde</p>
+                        <span class="seal-badge">Certificada 2023</span>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-logo">🏦</div>
+                        <h3 class="company-name">FinanceFirst</h3>
+                        <p class="company-type">Serviços Financeiros</p>
+                        <span class="seal-badge">Certificada 2024</span>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-logo">🎓</div>
+                        <h3 class="company-name">EduExcel</h3>
+                        <p class="company-type">Educação</p>
+                        <span class="seal-badge">Certificada 2023</span>
+                    </div>
+                    
+                    <div class="company-card">
+                        <div class="company-logo">🌱</div>
+                        <h3 class="company-name">EcoSustainable</h3>
+                        <p class="company-type">Sustentabilidade</p>
+                        <span class="seal-badge">Certificada 2024</span>
+                    </div>
                 </div>
                 
-                <div class="company-card">
-                    <div class="company-logo">🏭</div>
-                    <h3 class="company-name">Industrial Prime</h3>
-                    <p class="company-type">Manufatura</p>
-                    <span class="seal-badge">Certificada 2024</span>
-                </div>
+                <button class="carousel-nav prev" id="prevBtn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                    </svg>
+                </button>
                 
-                <div class="company-card">
-                    <div class="company-logo">🏥</div>
-                    <h3 class="company-name">HealthCare Plus</h3>
-                    <p class="company-type">Saúde</p>
-                    <span class="seal-badge">Certificada 2023</span>
-                </div>
-                
-                <div class="company-card">
-                    <div class="company-logo">🏦</div>
-                    <h3 class="company-name">FinanceFirst</h3>
-                    <p class="company-type">Serviços Financeiros</p>
-                    <span class="seal-badge">Certificada 2024</span>
-                </div>
-                
-                <div class="company-card">
-                    <div class="company-logo">🎓</div>
-                    <h3 class="company-name">EduExcel</h3>
-                    <p class="company-type">Educação</p>
-                    <span class="seal-badge">Certificada 2023</span>
-                </div>
-                
-                <div class="company-card">
-                    <div class="company-logo">🌱</div>
-                    <h3 class="company-name">EcoSustainable</h3>
-                    <p class="company-type">Sustentabilidade</p>
-                    <span class="seal-badge">Certificada 2024</span>
-                </div>
+                <button class="carousel-nav next" id="nextBtn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                    </svg>
+                </button>
             </div>
+            
+            <div class="carousel-indicators" id="indicators"></div>
         </div>
     </section>
 
@@ -196,7 +218,7 @@
             
             <div class="faq-categories">
                 <div class="faq-category">
-                    <h3>👥 Para quem quer participar</h3>
+                    <h3>Para quem quer participar</h3>
                     
                     <div class="faq-item">
                         <div class="faq-question">Como posso inscrever minha empresa?</div>
@@ -215,7 +237,7 @@
                 </div>
                 
                 <div class="faq-category">
-                    <h3>✅ Para quem já participa</h3>
+                    <h3>Para quem já participa</h3>
                     
                     <div class="faq-item">
                         <div class="faq-question">Como renovar minha certificação?</div>
@@ -234,7 +256,7 @@
                 </div>
                 
                 <div class="faq-category">
-                    <h3>🌐 Para visitantes</h3>
+                    <h3>Para visitantes</h3>
                     
                     <div class="faq-item">
                         <div class="faq-question">Como verificar se uma empresa é certificada?</div>
@@ -485,6 +507,192 @@
 
         // Removed parallax effect for better performance
         console.log('Site otimizado para melhor performance');
+
+        //carrossel 
+        class CompaniesCarousel {
+            constructor() {
+                this.track = document.getElementById('carouselTrack');
+                this.cards = this.track.querySelectorAll('.company-card');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.indicatorsContainer = document.getElementById('indicators');
+                
+                this.currentIndex = 0;
+                this.cardWidth = 0;
+                this.gap = 32; // 2rem in pixels
+                this.visibleCards = this.getVisibleCards();
+                this.totalSlides = Math.max(0, this.cards.length - this.visibleCards + 1);
+                
+                this.init();
+            }
+            
+            init() {
+                // Aguarda um pouco para garantir que o CSS foi aplicado
+                setTimeout(() => {
+                    this.calculateDimensions();
+                    this.createIndicators();
+                    this.bindEvents();
+                    this.updateCarousel();
+                    
+                    // Auto-play (opcional)
+                    this.startAutoPlay();
+                }, 100);
+            }
+            
+            calculateDimensions() {
+                if (this.cards.length > 0) {
+                    // Força um layout antes de calcular as dimensões
+                    this.track.style.transform = 'translateX(0px)';
+                    
+                    // Espera um frame para garantir que o layout foi aplicado
+                    requestAnimationFrame(() => {
+                        this.cardWidth = this.cards[0].offsetWidth;
+                        this.visibleCards = this.getVisibleCards();
+                        this.totalSlides = Math.max(1, this.cards.length - this.visibleCards + 1);
+                        
+                        // Ajusta o índice atual se necessário
+                        this.currentIndex = Math.min(this.currentIndex, this.totalSlides - 1);
+                        this.updateCarousel();
+                    });
+                }
+            }
+            
+            getVisibleCards() {
+                const containerWidth = this.track.parentElement.offsetWidth - 150; // Margem mais conservadora
+                const cardWithGap = this.cardWidth + this.gap;
+                const possibleCards = Math.floor(containerWidth / cardWithGap);
+                
+                // Garantir que sempre mostra cards inteiros
+                const maxCards = Math.min(possibleCards, this.cards.length);
+                return Math.max(1, maxCards);
+            }
+            
+            createIndicators() {
+                this.indicatorsContainer.innerHTML = '';
+                for (let i = 0; i < this.totalSlides; i++) {
+                    const indicator = document.createElement('div');
+                    indicator.className = `indicator ${i === 0 ? 'active' : ''}`;
+                    indicator.addEventListener('click', () => this.goToSlide(i));
+                    this.indicatorsContainer.appendChild(indicator);
+                }
+            }
+            
+            bindEvents() {
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
+                // Touch/swipe support
+                let startX = 0;
+                let currentX = 0;
+                let isDragging = false;
+                
+                this.track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    isDragging = true;
+                    this.pauseAutoPlay();
+                });
+                
+                this.track.addEventListener('touchmove', (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    currentX = e.touches[0].clientX;
+                });
+                
+                this.track.addEventListener('touchend', () => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    
+                    const diff = startX - currentX;
+                    if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                            this.nextSlide();
+                        } else {
+                            this.prevSlide();
+                        }
+                    }
+                    
+                    this.startAutoPlay();
+                });
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        this.prevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        this.nextSlide();
+                    }
+                });
+                
+                // Pause auto-play on hover
+                this.track.parentElement.addEventListener('mouseenter', () => this.pauseAutoPlay());
+                this.track.parentElement.addEventListener('mouseleave', () => this.startAutoPlay());
+                
+                // Recalculate on window resize
+                window.addEventListener('resize', () => {
+                    this.calculateDimensions();
+                    this.createIndicators();
+                    this.currentIndex = Math.min(this.currentIndex, this.totalSlides - 1);
+                    this.updateCarousel();
+                });
+            }
+            
+            updateCarousel() {
+                const translateX = -this.currentIndex * (this.cardWidth + this.gap);
+                this.track.style.transform = `translateX(${translateX}px)`;
+                
+                // Update indicators
+                const indicators = this.indicatorsContainer.querySelectorAll('.indicator');
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentIndex);
+                });
+                
+                // Update navigation buttons
+                this.prevBtn.style.opacity = this.currentIndex === 0 ? '0.5' : '1';
+                this.nextBtn.style.opacity = this.currentIndex === this.totalSlides - 1 ? '0.5' : '1';
+            }
+            
+            nextSlide() {
+                if (this.currentIndex < this.totalSlides - 1) {
+                    this.currentIndex++;
+                } else {
+                    this.currentIndex = 0; // Loop back to start
+                }
+                this.updateCarousel();
+            }
+            
+            prevSlide() {
+                if (this.currentIndex > 0) {
+                    this.currentIndex--;
+                } else {
+                    this.currentIndex = this.totalSlides - 1; // Loop to end
+                }
+                this.updateCarousel();
+            }
+            
+            goToSlide(index) {
+                this.currentIndex = index;
+                this.updateCarousel();
+            }
+            
+            startAutoPlay() {
+                this.pauseAutoPlay();
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 4000); // Change slide every 4 seconds
+            }
+            
+            pauseAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                }
+            }
+        }
+        
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new CompaniesCarousel();
+        });
     </script>
 </body>
 </html>
