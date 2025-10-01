@@ -337,13 +337,14 @@ nav {
     padding-left: 2rem;
     padding-right: 2rem;
 }
+
 .sectionc h2 {
     font-size: clamp(2rem, 4vw, 2.5rem);
     text-align: center;
     margin-bottom: 3rem;
-    color: var(--verde-principal);
+    color: var(--primary-blue);
 }
-/* Carrossel */
+
 .carrossel-container {
     position: relative;
     overflow: hidden;
@@ -364,18 +365,39 @@ nav {
     background: var(--shadow);
 }
 
-.empresa-logo {
-    width: 100px;
-    height: 100px;
-    background: var(--primary-blue);
-    border-radius: 20px;
-    margin: 0 auto 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
+.empresa-imagem {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    margin: 0 auto 2rem;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.empresa-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.empresa-card:hover .empresa-imagem img {
+    transform: scale(1.05);
+}
+
+.empresa-card h3 {
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.empresa-card p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .carrossel-btn {
@@ -389,7 +411,7 @@ nav {
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     transition: all 0.3s ease;
     z-index: 10;
 }
@@ -420,11 +442,17 @@ nav {
     border-radius: 50%;
     background: #ccc;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
+    background: #999;
 }
 
 .indicator.active {
     background: var(--primary-blue);
+    width: 30px;
+    border-radius: 6px;
 }
 
 /* Partners Section */
