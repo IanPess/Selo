@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selo de Qualidade - Certificação Empresarial</title>
     <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav>
             <ul class="nav-links">
-                <li><a href="#home">Início</a></li>
-                <li><a href="#seal">Quem Somos</a></li>
-                <li><a href="#about">Selo</a></li>
-                <li><a href="#companies">Empresas</a></li>
-                <li><a href="#partners">Parceiros</a></li>
-                <li><a href="#contact">Contato</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i><span class="textinho">Início</span></a></li>
+                <li><a href="#seal"><i class="fas fa-users"></i><span class="textinho">Quem Somos</span></a></li>
+                <li><a href="#about"><i class="fas fa-certificate"></i><span class="textinho">Selo</span></a></li>
+                <li><a href="#companies"><i class="fas fa-building"></i><span class="textinho">Empresas</span></a></li>
+                <li><a href="#partners"><i class="fas fa-handshake"></i><span class="textinho">Parceiros</span></a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i><span class="textinho">Contato</span></a></li>
             </ul>
             <div class="mobile-menu">
                 <span></span>
@@ -353,201 +353,243 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // FAQ Accordion Effect
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                const isOpen = answer.style.display === 'block';
-                
-                // Close all answers
-                document.querySelectorAll('.faq-answer').forEach(ans => {
-                    ans.style.display = 'none';
-                });
-                
-                // Toggle current answer
-                if (!isOpen) {
-                    answer.style.display = 'block';
-                    answer.style.animation = 'fadeInUp 0.3s ease';
-                }
-            });
-        });
+        // ============================================
+// CARROSSEL FUNCTIONALITY
+// ============================================
+let currentSlide = 0;
+const carrossel = document.getElementById('carrossel');
+const indicators = document.querySelectorAll('.indicator');
+const totalSlides = document.querySelectorAll('.empresa-card').length;
+let autoplayInterval;
 
-        // Search Functionality
-        const searchInput = document.querySelector('.search-box input');
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            
-            if (searchTerm.length > 2) {
-                // Simple search highlighting (you can enhance this)
-                const sections = document.querySelectorAll('.section');
-                sections.forEach(section => {
-                    const text = section.textContent.toLowerCase();
-                    if (text.includes(searchTerm)) {
-                        section.style.backgroundColor = '#fffbf0';
-                        setTimeout(() => {
-                            section.style.backgroundColor = '';
-                        }, 2000);
-                    }
-                });
-            }
-        });
+function updateCarrossel() {
+    if (!carrossel) return;
+    
+    carrossel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentSlide);
+    });
+}
 
-        // Scroll Animation for Cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateCarrossel();
+    resetAutoplay();
+}
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-                }
-            });
-        }, observerOptions);
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateCarrossel();
+    resetAutoplay();
+}
 
-        // Observe all cards and sections
-        document.querySelectorAll('.company-card, .partner-logo, .faq-category').forEach(el => {
-            observer.observe(el);
-        });
+function goToSlide(index) {
+    currentSlide = index;
+    updateCarrossel();
+    resetAutoplay();
+}
 
-        // Dynamic Year in Footer
-        document.querySelector('.footer-bottom p').innerHTML = 
-            document.querySelector('.footer-bottom p').innerHTML.replace('2024', new Date().getFullYear());
+function startAutoplay() {
+    autoplayInterval = setInterval(nextSlide, 5000);
+}
 
-        // Performance: Lazy loading for images (if you add images later)
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
+function resetAutoplay() {
+    clearInterval(autoplayInterval);
+    startAutoplay();
+}
 
-        lazyImages.forEach(img => imageObserver.observe(img));
+// Start autoplay when DOM is ready
+if (carrossel) {
+    startAutoplay();
+}
 
-        // Add loading states for interactive elements
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (this.getAttribute('href').startsWith('#')) return;
-                
-                e.preventDefault();
-                const originalText = this.textContent;
-                this.textContent = 'Carregando...';
-                this.style.opacity = '0.8';
-                
-                setTimeout(() => {
-                    this.textContent = originalText;
-                    this.style.opacity = '1';
-                    // Add your form submission logic here
-                    alert('Funcionalidade de inscrição será implementada em breve!');
-                }, 1500);
-            });
-        });
+// Touch support for mobile
+let startX = 0;
+let startY = 0;
 
-        // Enhanced mobile responsiveness
-        function checkMobile() {
-            if (window.innerWidth <= 768) {
-                document.querySelector('.nav-links').style.display = 'none';
-                document.querySelector('.search-box').style.display = 'none';
+const carrosselContainer = document.querySelector('.carrossel-container');
+
+if (carrosselContainer) {
+    carrosselContainer.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    carrosselContainer.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        
+        const deltaX = startX - endX;
+        const deltaY = startY - endY;
+        
+        // Only swipe if horizontal movement is greater than vertical
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            if (deltaX > 0) {
+                nextSlide();
             } else {
-                document.querySelector('.nav-links').style.display = 'flex';
-                document.querySelector('.search-box').style.display = 'block';
+                prevSlide();
             }
         }
+    }, { passive: true });
+}
 
-        window.addEventListener('resize', checkMobile);
-        checkMobile();
+// Pause autoplay on hover
+if (carrosselContainer) {
+    carrosselContainer.addEventListener('mouseenter', () => {
+        clearInterval(autoplayInterval);
+    });
 
-        // Removed parallax effect for better performance
-        console.log('Site otimizado para melhor performance');
+    carrosselContainer.addEventListener('mouseleave', () => {
+        startAutoplay();
+    });
+}
 
-         // Carrossel functionality
-         let currentSlide = 0;
-         const slides = document.querySelectorAll('.empresa-card');
-         const totalSlides = slides.length;
-         let autoplayInterval;
- 
-         function updateCarrossel() {
-             const carrossel = document.getElementById('carrossel');
-             carrossel.style.transform = `translateX(-${currentSlide * 100}%)`;
-             
-             // Update indicators
-             const indicators = document.querySelectorAll('.indicator');
-             indicators.forEach((indicator, index) => {
-                 indicator.classList.toggle('active', index === currentSlide);
-             });
-         }
- 
-         function nextSlide() {
-             currentSlide = (currentSlide + 1) % totalSlides;
-             updateCarrossel();
-             resetAutoplay();
-         }
- 
-         function prevSlide() {
-             currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-             updateCarrossel();
-             resetAutoplay();
-         }
- 
-         function goToSlide(index) {
-             currentSlide = index;
-             updateCarrossel();
-             resetAutoplay();
-         }
- 
-         function startAutoplay() {
-             autoplayInterval = setInterval(nextSlide, 5000);
-         }
- 
-         function resetAutoplay() {
-             clearInterval(autoplayInterval);
-             startAutoplay();
-         }
- 
-         // Start autoplay on load
-         startAutoplay();
- 
-         // Touch support for mobile
-         let startX = 0;
-         let startY = 0;
-         let endX = 0;
-         let endY = 0;
- 
-         const carrosselContainer = document.querySelector('.carrossel-container');
- 
-         carrosselContainer.addEventListener('touchstart', (e) => {
-             startX = e.touches[0].clientX;
-             startY = e.touches[0].clientY;
-         });
- 
-         carrosselContainer.addEventListener('touchmove', (e) => {
-             e.preventDefault();
-         });
- 
-         carrosselContainer.addEventListener('touchend', (e) => {
-             endX = e.changedTouches[0].clientX;
-             endY = e.changedTouches[0].clientY;
-             
-             const deltaX = startX - endX;
-             const deltaY = startY - endY;
-             
-             if (Math.abs(deltaX) > Math.abs(deltaY)) {
-                 if (Math.abs(deltaX) > 50) {
-                     if (deltaX > 0) {
-                         nextSlide();
-                     } else {
-                         prevSlide();
-                     }
-                 }
-             }
-         });
- 
+// ============================================
+// FAQ ACCORDION EFFECT
+// ============================================
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isOpen = answer.style.display === 'block';
+        
+        // Close all answers
+        document.querySelectorAll('.faq-answer').forEach(ans => {
+            ans.style.display = 'none';
+        });
+        
+        // Toggle current answer
+        if (!isOpen) {
+            answer.style.display = 'block';
+            answer.style.animation = 'fadeInUp 0.3s ease';
+        }
+    });
+});
+
+// ============================================
+// SEARCH FUNCTIONALITY
+// ============================================
+const searchInput = document.querySelector('.search-box input');
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        if (searchTerm.length > 2) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    section.style.backgroundColor = '#fffbf0';
+                    setTimeout(() => {
+                        section.style.backgroundColor = '';
+                    }, 2000);
+                }
+            });
+        }
+    });
+}
+
+// ============================================
+// SCROLL ANIMATION FOR CARDS
+// ============================================
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+// Observe all cards and sections
+document.querySelectorAll('.company-card, .partner-logo, .faq-category, .reveal').forEach(el => {
+    observer.observe(el);
+});
+
+// ============================================
+// DYNAMIC YEAR IN FOOTER
+// ============================================
+const footerText = document.querySelector('.footer-bottom p');
+if (footerText) {
+    footerText.innerHTML = footerText.innerHTML.replace('2024', new Date().getFullYear());
+}
+
+// ============================================
+// LAZY LOADING FOR IMAGES
+// ============================================
+const lazyImages = document.querySelectorAll('img[data-src]');
+const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.remove('lazy');
+            imageObserver.unobserve(img);
+        }
+    });
+});
+
+lazyImages.forEach(img => imageObserver.observe(img));
+
+
+// ============================================
+// MOBILE MENU TOGGLE
+// ============================================
+function checkMobile() {
+    const navLinks = document.querySelector('.nav-links');
+    const searchBox = document.querySelector('.search-box');
+    
+    if (window.innerWidth <= 768) {
+        if (navLinks) navLinks.style.display = 'none';
+        if (searchBox) searchBox.style.display = 'none';
+    } else {
+        if (navLinks) navLinks.style.display = 'flex';
+        if (searchBox) searchBox.style.display = 'block';
+    }
+}
+
+window.addEventListener('resize', checkMobile);
+checkMobile();
+
+// ============================================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// ============================================
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// ============================================
+// KEYBOARD NAVIGATION FOR CARROSSEL
+// ============================================
+document.addEventListener('keydown', (e) => {
+    if (!carrossel) return;
+    
+    if (e.key === 'ArrowLeft') {
+        prevSlide();
+    } else if (e.key === 'ArrowRight') {
+        nextSlide();
+    }
+});
+
+
     </script>
 </body>
 </html>
