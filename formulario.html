@@ -21,48 +21,46 @@
                 Inscrição enviada com sucesso! Entraremos em contato em breve.
             </div>
 
-            <form id="inscricaoForm" 
+           <form id="inscricaoForm" 
       action="https://docs.google.com/forms/d/e/1FAIpQLSdkfYjPqF3KDcx5eyfRkNOBlopQHJ2-efdqx4A-39P6-1BPTw/formResponse" 
       method="POST" 
       target="hidden_iframe">
 
+    <!-- TIPO DE DOCUMENTO (campo de seleção) -->
     <div class="form-group">
         <label for="tipo">Tipo de Documento <span class="required">*</span></label>
-        <select id="tipo" name="entry.1827076285" required>
+        <select id="tipo" name="entry.1469298195" required>
             <option value="">Selecione...</option>
-            <option value="cnpj">CNPJ</option>
-            <option value="cpf">CPF</option>
+            <option value="CPF">CPF</option>
+            <option value="CNPJ">CNPJ</option>
         </select>
     </div>
 
+    <!-- DOCUMENTO -->
     <div class="form-group">
-        <label for="numeroDoc">Número do Documento <span class="required">*</span></label>
-        <input type="text" id="numeroDoc" name="entry.2119847769" placeholder="Digite o CPF ou CNPJ" required>
+        <label for="documento">Número do Documento <span class="required">*</span></label>
+        <input type="text" id="documento" name="entry.816225273" placeholder="Digite o número" required>
     </div>
 
+    <!-- EMPRESA -->
     <div class="form-group">
         <label for="empresa">Nome da Empresa <span class="required">*</span></label>
-        <input type="text" id="empresa" name="entry.188810136" placeholder="Digite o nome da empresa" required>
+        <input type="text" id="empresa" name="entry.1272812587" placeholder="Digite o nome da empresa" required>
     </div>
 
+    <!-- CONTATO -->
     <div class="form-group">
         <label for="contato">Nome do Contato <span class="required">*</span></label>
-        <input type="text" id="contato" name="entry.487821826" placeholder="Digite o nome completo" required>
+        <input type="text" id="contato" name="entry.2125979990" placeholder="Digite o nome do contato" required>
     </div>
 
-    <div class="form-row">
-        <div class="form-group">
-            <label for="email">E-mail <span class="required">*</span></label>
-            <input type="email" id="email" name="entry.715009551" placeholder="seu@email.com" required>
-        </div>
-
-        <div class="form-group">
-            <label for="telefone">Telefone <span class="required">*</span></label>
-            <input type="tel" id="telefone" name="entry.1169642392" placeholder="(00) 00000-0000" required>
-        </div>
+    <!-- TELEFONE -->
+    <div class="form-group">
+        <label for="telefone">Telefone <span class="required">*</span></label>
+        <input type="text" id="telefone" name="entry.153886640" placeholder="(00) 00000-0000" required>
     </div>
 
-    <button type="submit" class="btn-submit">Enviar Inscrição</button>
+    <button type="submit" class="btn-submit">Enviar</button>
 
     <p class="info-text">
         <span class="required">*</span> Campos obrigatórios
@@ -70,6 +68,7 @@
 </form>
 
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
 
     <script>
         const form = document.getElementById('inscricaoForm');
