@@ -26,36 +26,41 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Certificação de Excelência</h1>
-            <p>Reconhecemos empresas que se destacam pela qualidade, inovação e compromisso com a excelência em suas operações.</p>
-            <a href="formulario.html" class="cta-button">Inscreva-se Agora</a>
-            
-            <div class="countdown">
-                <h3>Próxima Certificação em:</h3>
-                <div class="countdown-timer">
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="days">30</span>
-                        <span class="countdown-label">Dias</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="hours">12</span>
-                        <span class="countdown-label">Horas</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="minutes">45</span>
-                        <span class="countdown-label">Minutos</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-number" id="seconds">30</span>
-                        <span class="countdown-label">Segundos</span>
-                    </div>
+   <section id="home" class="hero">
+    <div class="hero-content">
+        <!-- Selo em destaque -->
+        <div class="hero-seal">
+            <div class="seal-glow"></div>
+            <img src="logo_bemreceber_turismo.png" alt="Selo de Certificação" class="seal-image">
+        </div>
+        
+        <h1>Certificação de Excelência</h1>
+        <p>Reconhecemos empresas que se destacam pela qualidade, inovação e compromisso com a excelência em suas operações.</p>
+        <a href="formulario.html" class="cta-button">Inscreva-se Agora</a>
+        
+        <div class="countdown">
+            <h3>Próxima Certificação em:</h3>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">30</span>
+                    <span class="countdown-label">Dias</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">12</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">45</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">30</span>
+                    <span class="countdown-label">Segundos</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- About Section -->
     <section id="about" class="section about">
@@ -325,7 +330,7 @@
         function updateCountdown() {
             // Set target date (you can modify this)
             const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate() + 30);
+            targetDate.setDate(targetDate.getDate());
             targetDate.setHours(23, 59, 59, 999);
             
             const now = new Date().getTime();
