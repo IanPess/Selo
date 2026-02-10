@@ -142,6 +142,77 @@
         </div>
     </section>
 
+     <!-- Como se Qualificar Section -->
+    <section id="qualification" class="qualification-section">
+        <div class="container">
+            <h2>Como se Qualificar? 🎖️</h2>
+            
+            <div class="qualification-carousel-container">
+                <button class="qualification-carousel-btn qualification-prev" onclick="moveQualificationCarousel(-1)">‹</button>
+                
+                <div class="qualification-carousel-wrapper">
+                    <div class="qualification-carousel-track">
+                        <!-- Card 1 - Inscrição -->
+                        <div class="qualification-card" style="background: linear-gradient(135deg, #ffd4b3 0%, #ffb88c 100%);">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                    <path d="M9 12l2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <h3>Inscrição</h3>
+                            <p>Preencha o formulário de inscrição com os dados da sua empresa</p>
+                        </div>
+
+                        <!-- Card 2 - Requisitos Tietê Vivo -->
+                        <div class="qualification-card" style="background: linear-gradient(135deg, #a8b8a0 0%, #8fa888 100%);">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <h3>Requisitos Tietê Vivo</h3>
+                            <p>Pela Agência, os pontos essenciais são: atendimento cordial, ambiente limpo e organizado, acessibilidade básica, e participação nas ações da região, incluindo divulgação dos materiais oficiais da IGR.</p>
+                        </div>
+
+                        <!-- Card 3 - Requisitos CIENSP -->
+                        <div class="qualification-card" style="background: linear-gradient(135deg, #a8c8e1 0%, #7ba7c7 100%);">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3>Requisitos CIENSP</h3>
+                            <p>Conformidade com normas técnicas e padrões de qualidade estabelecidos pelo CIENSP</p>
+                        </div>
+
+                        <!-- Card 4 - Renovação -->
+                        <div class="qualification-card" style="background: linear-gradient(135deg, #4a9d5f 0%, #357a47 100%);">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                    <path d="M9 12h6m-6 4h6"/>
+                                    <circle cx="16" cy="16" r="3"/>
+                                    <path d="M16 15v2l1 1"/>
+                                </svg>
+                            </div>
+                            <h3>Renovação</h3>
+                            <p>Processo de renovação anual para manter sua certificação ativa e atualizada</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="qualification-carousel-btn qualification-next" onclick="moveQualificationCarousel(1)">›</button>
+            </div>
+
+            <div class="qualification-carousel-dots">
+                <span class="qualification-dot active" onclick="goToQualificationSlide(0)"></span>
+                <span class="qualification-dot" onclick="goToQualificationSlide(1)"></span>
+            </div>
+        </div>
+    </section>
+
     <!-- Quem Somos Section -->
     <section id="seal" class="section">
         <div class="container">
@@ -589,6 +660,242 @@ document.addEventListener('keydown', (e) => {
     } else if (e.key === 'ArrowRight') {
         nextSlide();
     }
+});
+
+// Qualification Carousel
+let currentQualificationSlide = 0;
+const qualificationCards = document.querySelectorAll('.qualification-card');
+const qualificationTrack = document.querySelector('.qualification-carousel-track');
+const qualificationDots = document.querySelectorAll('.qualification-dot');
+
+function updateQualificationCarousel() {
+    if (!qualificationTrack) return;
+    
+    const cardWidth = qualificationCards[0].offsetWidth;
+    const gap = 32; // 2rem gap
+    
+    // Para dispositivos móveis, mostra 1 card
+    // Para tablets, mostra 2 cards
+    // Para desktop, mostra 3 cards
+    let cardsToShow = 3;
+    if (window.innerWidth <= 768) {
+        cardsToShow = 1;
+    } else if (window.innerWidth <= 1024) {
+        cardsToShow = 2;
+    }
+    
+    const translateValue = -(currentQualificationSlide * (cardWidth + gap));
+    qualificationTrack.style.transform = `translateX(${translateValue}px)`;
+    
+    // Update dots
+    qualificationDots.forEach((dot, index) => {
+        dot.classList.remove('active');
+        if (index === currentQualificationSlide) {
+            dot.classList.add('active');
+        }
+    });
+}
+
+function moveQualificationCarousel(direction) {
+    const totalSlides = qualificationCards.length;
+    let maxSlide = totalSlides - 3;
+    
+    if (window.innerWidth <= 768) {
+        maxSlide = totalSlides - 1;
+    } else if (window.innerWidth <= 1024) {
+        maxSlide = totalSlides - 2;
+    }
+    
+    currentQualificationSlide += direction;
+    
+    if (currentQualificationSlide < 0) {
+        currentQualificationSlide = maxSlide;
+    } else if (currentQualificationSlide > maxSlide) {
+        currentQualificationSlide = 0;
+    }
+    
+    updateQualificationCarousel();
+}
+
+function goToQualificationSlide(index) {
+    currentQualificationSlide = index;
+    updateQualificationCarousel();
+}
+
+// Auto-play carousel
+let qualificationAutoplay = setInterval(() => {
+    moveQualificationCarousel(1);
+}, 5000);
+
+// Pause autoplay on hover
+const qualificationContainer = document.querySelector('.qualification-carousel-container');
+if (qualificationContainer) {
+    qualificationContainer.addEventListener('mouseenter', () => {
+        clearInterval(qualificationAutoplay);
+    });
+
+    qualificationContainer.addEventListener('mouseleave', () => {
+        qualificationAutoplay = setInterval(() => {
+            moveQualificationCarousel(1);
+        }, 5000);
+    });
+}
+
+// Companies Carousel
+let currentCompanySlide = 0;
+const companyCards = document.querySelectorAll('.company-card');
+const companiesTrack = document.querySelector('.companies-track');
+
+function updateCompaniesCarousel() {
+    if (!companiesTrack) return;
+    
+    const cardWidth = companyCards[0].offsetWidth;
+    const gap = 32; // 2rem gap
+    
+    let cardsToShow = 3;
+    if (window.innerWidth <= 768) {
+        cardsToShow = 1;
+    } else if (window.innerWidth <= 1024) {
+        cardsToShow = 2;
+    }
+    
+    const translateValue = -(currentCompanySlide * (cardWidth + gap));
+    companiesTrack.style.transform = `translateX(${translateValue}px)`;
+}
+
+function moveCompanies(direction) {
+    const totalSlides = companyCards.length;
+    let maxSlide = totalSlides - 3;
+    
+    if (window.innerWidth <= 768) {
+        maxSlide = totalSlides - 1;
+    } else if (window.innerWidth <= 1024) {
+        maxSlide = totalSlides - 2;
+    }
+    
+    currentCompanySlide += direction;
+    
+    if (currentCompanySlide < 0) {
+        currentCompanySlide = maxSlide;
+    } else if (currentCompanySlide > maxSlide) {
+        currentCompanySlide = 0;
+    }
+    
+    updateCompaniesCarousel();
+}
+
+// FAQ Toggle
+function toggleFaq(button) {
+    const faqItem = button.parentElement;
+    const answer = faqItem.querySelector('.faq-answer');
+    const allQuestions = document.querySelectorAll('.faq-question');
+    const allAnswers = document.querySelectorAll('.faq-answer');
+    
+    // Close all other FAQs
+    allQuestions.forEach(q => {
+        if (q !== button) {
+            q.classList.remove('active');
+        }
+    });
+    
+    allAnswers.forEach(a => {
+        if (a !== answer) {
+            a.style.maxHeight = null;
+        }
+    });
+    
+    // Toggle current FAQ
+    button.classList.toggle('active');
+    
+    if (answer.style.maxHeight) {
+        answer.style.maxHeight = null;
+    } else {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+    }
+}
+
+// Countdown Timer
+function updateCountdown() {
+    const targetDate = new Date('2025-03-15T00:00:00').getTime();
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    const timeBoxes = document.querySelectorAll('.time-box');
+    if (timeBoxes.length >= 4) {
+        timeBoxes[0].querySelector('.time').textContent = days;
+        timeBoxes[1].querySelector('.time').textContent = hours;
+        timeBoxes[2].querySelector('.time').textContent = minutes;
+        timeBoxes[3].querySelector('.time').textContent = seconds;
+    }
+}
+
+// Update countdown every second
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Update carousels on window resize
+window.addEventListener('resize', () => {
+    updateQualificationCarousel();
+    updateCompaniesCarousel();
+});
+
+// Initialize carousels on page load
+window.addEventListener('load', () => {
+    updateQualificationCarousel();
+    updateCompaniesCarousel();
+});
+
+// Navbar scroll effect
+let lastScroll = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll <= 0) {
+        navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+        return;
+    }
+    
+    if (currentScroll > lastScroll) {
+        // Scrolling down
+        navbar.style.transform = 'translateY(-100%)';
+    } else {
+        // Scrolling up
+        navbar.style.transform = 'translateY(0)';
+        navbar.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+    }
+    
+    lastScroll = currentScroll;
+});
+
+
+
+// Observe all sections
+document.querySelectorAll('section').forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(20px)';
+    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(section);
 });
 
 
