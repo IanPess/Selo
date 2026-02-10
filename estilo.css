@@ -15,6 +15,10 @@
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -253,6 +257,130 @@ body {
 .countdown-label {
     font-size: 0.9rem;
     opacity: 0.8;
+}
+
+.qualification-section {
+    padding: 5rem 0;
+    background: var(--white);
+}
+
+.qualification-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.qualification-carousel-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.qualification-carousel-wrapper {
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.qualification-carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 2rem;
+}
+
+.qualification-card {
+    min-width: calc(33.333% - 1.333rem);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    color: var(--white);
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.qualification-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon svg {
+    width: 45px;
+    height: 45px;
+    stroke: white;
+}
+
+.qualification-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.qualification-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.qualification-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--white);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s;
+    z-index: 10;
+    color: var(--text-dark);
+}
+
+.qualification-carousel-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.qualification-carousel-btn.qualification-prev {
+    left: 0;
+}
+
+.qualification-carousel-btn.qualification-next {
+    right: 0;
+}
+
+.qualification-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.qualification-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d1d5db;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.qualification-dot.active {
+    background: var(--primary-color);
+    width: 30px;
+    border-radius: 6px;
 }
 
 /* Section Styles */
@@ -660,6 +788,31 @@ footer {
         transform: rotate(360deg);
     }
 }
+@media (max-width: 1024px) {
+    .qualification-card {
+        min-width: calc(50% - 1rem);
+    }
+    
+    .company-card {
+        min-width: calc(50% - 1rem);
+    }
+    
+    .seal-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .faq-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -768,6 +921,42 @@ footer {
     }
      .countdown-number {
         font-size: 1.8rem;
+    }
+    .qualification-card {
+        min-width: 100%;
+        padding: 2rem 1.5rem;
+    }
+    
+    .qualification-section h2 {
+        font-size: 2rem;
+    }
+    
+    .qualification-carousel-container {
+        padding: 0 50px;
+    }
+    
+    .qualification-carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .card-icon svg {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .qualification-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .qualification-card p {
+        font-size: 0.95rem;
     }
 }
 @media (max-width: 575px) {
@@ -891,6 +1080,53 @@ footer {
         font-size: 1.5rem;
     }
 }
+ @media (max-width: 480px)
+ {
+    .qualification-carousel-container {
+        padding: 0 45px;
+    }
+    
+    .qualification-section {
+        padding: 3rem 0;
+    }
+    
+    .qualification-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .qualification-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .qualification-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .qualification-card p {
+        font-size: 0.9rem;
+    }
+    
+    .qualification-carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
+    .qualification-carousel-dots {
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .qualification-dot {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .qualification-dot.active {
+        width: 25px;
+    }
+ }
  @media (max-width: 380px) {
             nav {
                 padding: 0 0.5rem;
@@ -961,4 +1197,34 @@ footer {
     .countdown-label {
         font-size: 0.75rem;
     }
+    
         }
+    @media (max-width: 360px)
+    {
+        .qualification-carousel-container,
+    .companies-carousel {
+        padding: 0 40px;
+    }
+    
+    .qualification-carousel-btn,
+    .companies-carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.3rem;
+    }
+    
+    .time-box {
+        min-width: 55px;
+        padding: 0.6rem;
+    }
+    
+    .time {
+        font-size: 1.3rem;
+    }
+    }
+
+        
