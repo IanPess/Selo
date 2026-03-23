@@ -227,8 +227,14 @@ body {
     box-shadow: var(--shadow-hover);
     background: #f4b94d;
 }
-
+.countdown-container {
+    display: flex;
+    justify-content: center; /* centraliza */
+    gap: 3rem; /* espaço entre eles */
+    flex-wrap: nowrap; /* quebra em telas pequenas */
+}
 .countdown {
+    width: 85%;
     margin-top: 3rem;
     animation: fadeInUp 1s ease 0.6s both;
 }
@@ -998,6 +1004,17 @@ footer {
     
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 900px) {
+    .countdown-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .countdown {
+        width: 100%;
+        max-width: 400px;
     }
 }
 
