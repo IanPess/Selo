@@ -32,36 +32,54 @@
             }
         });
 
-        // Countdown Timer
-        function updateCountdown() {
-            // Set target date (you can modify this)
-            const targetDate = new Date();
-            targetDate.setDate(targetDate.getDate());
-            targetDate.setHours(23, 59, 59, 999);
-            
-            const now = new Date().getTime();
-            const distance = targetDate.getTime() - now;
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-            
-            if (distance < 0) {
-                document.querySelector('.countdown').innerHTML = '<h3>Inscrições Abertas!</h3>';
-            }
-        }
-        
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        // Função genérica (reutilizável)
+function criarContador(dataAlvo, ids, containerClass) {
+    function atualizar() {
+        const agora = new Date().getTime();
+        const distancia = dataAlvo.getTime() - agora;
 
-        // ============================================
+        const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+        document.getElementById(ids.days).textContent = dias.toString().padStart(2, '0');
+        document.getElementById(ids.hours).textContent = horas.toString().padStart(2, '0');
+        document.getElementById(ids.minutes).textContent = minutos.toString().padStart(2, '0');
+        document.getElementById(ids.seconds).textContent = segundos.toString().padStart(2, '0');
+
+        if (distancia < 0) {
+            document.querySelector(containerClass).innerHTML = '<h3>Inscrições Abertas!</h3>';
+        }
+    }
+
+    setInterval(atualizar, 1000);
+    atualizar();
+}
+
+// 🎯 CONTADOR 1 — 18 de Maio
+criarContador(
+    new Date(2026, 4, 18, 23, 59, 59), // mês começa em 0 (4 = maio)
+    {
+        days: 'days1',
+        hours: 'hours1',
+        minutes: 'minutes1',
+        seconds: 'seconds1'
+    },
+    '.countdown:nth-child(1)'
+);
+
+// 🎯 CONTADOR 2 — 19 de Maio
+criarContador(
+    new Date(2026, 4, 19, 23, 59, 59),
+    {
+        days: 'days2',
+        hours: 'hours2',
+        minutes: 'minutes2',
+        seconds: 'seconds2'
+    },
+    '.countdown:nth-child(2)'
+);
 // CARROSSEL FUNCTIONALITY
 // ============================================
 let currentSlide = 0;
@@ -522,272 +540,6 @@ window.addEventListener('scroll', () => {
     
     lastScroll = currentScroll;
 });
-
-
-
-// Observe all sections
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(20px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
-});
-
-// Sample data - In production, this would come from an API/database
-        const companies = [
-            {
-                id: 1,
-                name: "Hotel Rural Araçatuba",
-                category: "hotelaria",
-                description: "Especializado em turismo rural e ecoturismo, oferecendo experiências autênticas na natureza com conforto e sustentabilidade.",
-                image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-                location: "Araçatuba, SP",
-                year: "2023",
-                tags: ["Ecoturismo", "Sustentável", "Natureza"]
-            },
-            {
-                id: 2,
-                name: "Agência Roteiros",
-                category: "turismo",
-                description: "Agência receptiva especializada em roteiros personalizados pela região, conectando turistas aos melhores atrativos locais.",
-                image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
-                location: "Araçatuba, SP",
-                year: "2023",
-                tags: ["Roteiros", "Personalizado", "Receptivo"]
-            },
-            {
-                id: 3,
-                name: "Restaurante Típico",
-                category: "gastronomia",
-                description: "Gastronomia regional autêntica, valorizando ingredientes locais e tradições culinárias da região de Araçatuba.",
-                image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
-                location: "Araçatuba, SP",
-                year: "2023",
-                tags: ["Regional", "Autêntico", "Local"]
-            },
-            {
-                id: 4,
-                name: "Pousada Vista Verde",
-                category: "hotelaria",
-                description: "Pousada boutique com vista privilegiada para áreas verdes, oferecendo experiência única de hospedagem e lazer em meio à natureza.",
-                image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80",
-                location: "Interior de SP",
-                year: "2024",
-                tags: ["Boutique", "Natureza", "Conforto"]
-            },
-            {
-                id: 5,
-                name: "Café Artesanal Grãos Nobres",
-                category: "gastronomia",
-                description: "Cafeteria especializada em cafés especiais da região, com torrefação própria e ambiente aconchegante para apreciadores da bebida.",
-                image: "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=800&q=80",
-                location: "Araçatuba, SP",
-                year: "2024",
-                tags: ["Café Especial", "Artesanal", "Torrefação"]
-            },
-            {
-                id: 6,
-                name: "Aventura Extrema",
-                category: "turismo",
-                description: "Operadora de turismo de aventura oferecendo rafting, rapel, trilhas ecológicas e experiências radicais com total segurança.",
-                image: "https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=800&q=80",
-                location: "Região Tietê",
-                year: "2023",
-                tags: ["Aventura", "Radical", "Segurança"]
-            },
-            {
-                id: 7,
-                name: "Spa Bem-Estar Completo",
-                category: "servicos",
-                description: "Centro de bem-estar com tratamentos holísticos, massagens terapêuticas e programas de relaxamento para corpo e mente.",
-                image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80",
-                location: "Araçatuba, SP",
-                year: "2024",
-                tags: ["Bem-estar", "Relaxamento", "Terapias"]
-            },
-            {
-                id: 8,
-                name: "Empório Regional Sabores",
-                category: "comercio",
-                description: "Loja especializada em produtos regionais, artesanato local e iguarias típicas, valorizando produtores da região.",
-                image: "https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?w=800&q=80",
-                location: "Araçatuba, SP",
-                year: "2023",
-                tags: ["Regional", "Artesanato", "Produtores Locais"]
-            },
-            {
-                id: 9,
-                name: "Fazenda Experiência Rural",
-                category: "turismo",
-                description: "Turismo rural com atividades interativas, ordenha, cavalgadas e vivência autêntica do dia a dia no campo para toda família.",
-                image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
-                location: "Interior de SP",
-                year: "2024",
-                tags: ["Rural", "Família", "Vivência"]
-            },
-            {
-                id: 10,
-                name: "Churrascaria Tradição Gaúcha",
-                category: "gastronomia",
-                description: "Churrascaria premium com cortes nobres, buffet completo e ambiente tradicional gaúcho com música ao vivo nos finais de semana.",
-                image: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80",
-                location: "Araçatuba, SP",
-                year: "2023",
-                tags: ["Churrasco", "Premium", "Tradição"]
-            },
-            {
-                id: 11,
-                name: "Resort Águas Claras",
-                category: "hotelaria",
-                description: "Resort all-inclusive com parque aquático, atividades recreativas e infraestrutura completa para férias inesquecíveis.",
-                image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80",
-                location: "Região Tietê",
-                year: "2024",
-                tags: ["Resort", "All-inclusive", "Lazer"]
-            },
-            {
-                id: 12,
-                name: "Transporte Turístico Premium",
-                category: "servicos",
-                description: "Serviço de transporte executivo para turistas com veículos modernos, motoristas bilíngues e roteiros personalizados.",
-                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
-                location: "Araçatuba, SP",
-                year: "2023",
-                tags: ["Transporte", "Executivo", "Conforto"]
-            },
-            {
-                id: 13,
-                name: "IFSP",
-                category: "servicos",
-                description: "Serviços de educação.",
-                image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",
-                location: "Birigui, SP",
-                year: "2023",
-                tags: ["Transporte", "Executivo", "Conforto"]
-            }
-        ];
-
-        let displayedCompanies = 9;
-        let currentFilter = 'todos';
-        let currentSearch = '';
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            renderCompanies();
-            setupEventListeners();
-        });
-
-        // Render companies
-        function renderCompanies() {
-            const grid = document.getElementById('companiesGrid');
-            const filtered = filterCompanies();
-            const toShow = filtered.slice(0, displayedCompanies);
-            
-            grid.innerHTML = '';
-            
-            if (toShow.length === 0) {
-                document.getElementById('noResults').classList.add('active');
-                document.getElementById('loadMoreBtn').style.display = 'none';
-                return;
-            }
-            
-            document.getElementById('noResults').classList.remove('active');
-            
-            toShow.forEach(company => {
-                const card = createCompanyCard(company);
-                grid.appendChild(card);
-            });
-            
-            // Show/hide load more button
-            if (filtered.length > displayedCompanies) {
-                document.getElementById('loadMoreBtn').style.display = 'inline-block';
-            } else {
-                document.getElementById('loadMoreBtn').style.display = 'none';
-            }
-        }
-
-        // Create company card
-        function createCompanyCard(company) {
-            const card = document.createElement('div');
-            card.className = 'company-card';
-            card.setAttribute('data-category', company.category);
-            
-            card.innerHTML = `
-                <div class="card-image">
-                    <img src="${company.image}" alt="${company.name}">
-                    <div class="certified-badge">
-                        ✓ Certificado
-                    </div>
-                </div>
-                <div class="card-content">
-                    <div class="company-category">${getCategoryName(company.category)}</div>
-                    <h3 class="company-name">${company.name}</h3>
-                    <p class="company-description">${company.description}</p>
-                    <div class="company-tags">
-                        ${company.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                    <div class="company-meta">
-                        <div class="meta-item">📍 ${company.location}</div>
-                        <div class="meta-item">📅 Desde ${company.year}</div>
-                    </div>
-                </div>
-            `;
-            
-            return card;
-        }
-
-        // Get category name in Portuguese
-        function getCategoryName(category) {
-            const names = {
-                'hotelaria': 'Hotelaria',
-                'turismo': 'Turismo',
-                'gastronomia': 'Gastronomia',
-                'servicos': 'Serviços',
-                'comercio': 'Comércio'
-            };
-            return names[category] || category;
-        }
-
-        // Filter companies
-        function filterCompanies() {
-            return companies.filter(company => {
-                const matchesFilter = currentFilter === 'todos' || company.category === currentFilter;
-                const matchesSearch = currentSearch === '' || 
-                    company.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
-                    company.description.toLowerCase().includes(currentSearch.toLowerCase()) ||
-                    company.location.toLowerCase().includes(currentSearch.toLowerCase()) ||
-                    company.tags.some(tag => tag.toLowerCase().includes(currentSearch.toLowerCase()));
-                
-                return matchesFilter && matchesSearch;
-            });
-        }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            // Filter buttons
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentFilter = this.getAttribute('data-filter');
-                    displayedCompanies = 9;
-                    renderCompanies();
-                });
-            });
-
-            // Search input
-            document.getElementById('searchInput').addEventListener('input', function(e) {
-                currentSearch = e.target.value;
-                displayedCompanies = 9;
-                renderCompanies();
-            });
-
-            // Load more button
-            document.getElementById('loadMoreBtn').addEventListener('click', function() {
-                displayedCompanies += 9;
-                renderCompanies();
-            });
-        }
 
         // Toggle mobile menu
         function toggleMenu() {
