@@ -1432,3 +1432,24 @@ footer {
     }
 
         
+
+/* Botão Ver Critérios */
+.btn-ver-criterios {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-blue);
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+.btn-ver-criterios:hover {
+    background: var(--dark-blue);
+    transform: translateY(-1px);
+}
