@@ -559,27 +559,3 @@ window.addEventListener('scroll', () => {
                 }
             });
         });
-    function abrirForm() {
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    if (isIOS) {
-        // abre direto (sem bug)
-        window.open("https://forms.office.com/r/A7CMUZeJYp", "_blank");
-    } else {
-        // abre modal (bonito no desktop/android)
-        document.getElementById("formModal").style.display = "block";
-    }
-}
-
-function fecharForm() {
-    const modal = document.getElementById("formModal");
-    const iframe = document.querySelector("#formModal iframe");
-
-    iframe.style.pointerEvents = "none";
-    modal.style.display = "none";
-
-    setTimeout(() => {
-        iframe.src = iframe.src;
-        iframe.style.pointerEvents = "auto";
-    }, 300);
-}
