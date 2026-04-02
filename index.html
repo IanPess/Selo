@@ -36,9 +36,26 @@
         
         <h1>Chancela de Qualidade</h1>
         <p>Reconhecemos empresas que se destacam pela qualidade, inovação e compromisso com a excelência em suas operações.</p>
-        <a href="https://forms.office.com/r/A7CMUZeJYp" target="_blank" class="cta-button">
-            Inscreva-se Agora
-        </a>
+        <div id="form-container">
+    <a href="#" class="cta-button" onclick="abrirForm()">Responder Formulário</a>
+
+    <div id="formModal" class="form-modal">
+        
+        <!-- botão superior -->
+        <span class="close-top" onclick="fecharForm()">✕</span>
+
+        <div class="form-content">
+            <iframe src="https://forms.office.com/r/A7CMUZeJYp"></iframe>
+        </div>
+
+        <!-- botão inferior (principal no mobile) -->
+        <div class="close-bottom" onclick="fecharForm()">
+            Fechar ✕
+        </div>
+
+    </div>
+</div>
+        
         
         <div class="countdown-container">
             <div class="countdown">
@@ -97,7 +114,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>O que é o Programa?</h3>
-                    <p>O Programa de TURISMO SELO BEM RECEBER foi desenvolvido pelo Escritório de Sebrae de Araçatuba, visando <strong>fomentar</strong> e <strong>apoiar</strong> a Governança no Desenvolvimento do Turismo! O Programa é composto por Diagnósticos, Capacitações em Gestão e Turismo, Consultorias e critérios, que visam chancelar as Empresas que oferecem <strong>Serviços Diferenciados para o Turista!</strong> Estas ganham um Selo para ser fixado no seu Negócio e estarão no Site do Programa, auxiliando na Estratégia de Marketing do Negócio!</p>
+                    <p>O Programa de TURISMO SELO BEM RECEBER foi desenvolvido pelo Escritório de Sebrae de Araçatuba, visando <strong>fomentar</strong> e <strong>apoiar</strong> a Governança no Desenvolvimento do Turismo! O Programa é composto por Diagnósticos, Capacitações em Gestão e Turismo, Consultorias e critérios, que visam chancelar as Empresas que oferecem <strong>Serviços Diferenciados para o Turista!</strong> Estas ganham um Selo para ser fixado no seu Negócio e terão Material Promocional para auxiliar na sua Estratégia de Marketing!</p>
                     
                     <h4>Requisitos para Obter o Selo:</h4>
                     <ul class="about-features">
@@ -281,17 +298,17 @@
                     
                     <div class="faq-item">
                         <div class="faq-question">Como posso inscrever minha empresa?</div>
-                        <div class="faq-answer">Preencha o formulário de inscrição (Termo de Adesão) disponível no botão "Inscreva-se Agora" na página inicial. Após o envio, o SEBRAE entrará em contato para demais informações.</div>
+                        <div class="faq-answer">Preencha o formulário de inscrição (Termo de Adesão) disponível no botão "Inscreva-se Agora" na página inicial. Após o envio, nossa equipe realizará o Diagnóstico Inicial (T0) para orientar os próximos passos.</div>
                     </div>
                     
                     <div class="faq-item">
                         <div class="faq-question">Qual o prazo para obter a chancela?</div>
-                        <div class="faq-answer">O programa Selo 2024 tem 4 meses de projeto (29 de julho a 04 de novembro).O Prazo será a participação da Capacitação, proposta no ano. Ao final com 75% da participação e requisitos você estará apto a receber a chancela/placa.</div>
+                        <div class="faq-answer">O programa Selo 2024 tem 4 meses de projeto (29 de julho a 04 de novembro). Para renovações, o prazo é de 2 meses (14 de maio a 16 de julho).</div>
                     </div>
                     
                     <div class="faq-item">
                         <div class="faq-question">Há algum custo para participar?</div>
-                        <div class="faq-answer">Não há custo. O Programa é Gratuito.</div>
+                        <div class="faq-answer">Existe uma taxa de avaliação que varia conforme o porte da empresa. Entre em contato para informações específicas.</div>
                     </div>
                 </div>
                 
@@ -305,7 +322,7 @@
                     
                     <div class="faq-item">
                         <div class="faq-question">Posso usar o selo em materiais de marketing?</div>
-                        <div class="faq-answer">Sim! Empresas chanceladas recebem uma placa para fixar no empreendimento e estarão no Site do Programa para auxiliar na sua estratégia de marketing.</div>
+                        <div class="faq-answer">Sim! Empresas chanceladas recebem uma placa para fixar no empreendimento e material promocional para auxiliar na sua estratégia de marketing.</div>
                     </div>
                     
                     <div class="faq-item">
@@ -319,17 +336,17 @@
                     
                     <div class="faq-item">
                         <div class="faq-question">Como verificar se uma empresa é certificada?</div>
-                        <div class="faq-answer">AS empresas certificadas estarão no Site do Programa do Selo.</div>
+                        <div class="faq-answer">Utilize nossa ferramenta de busca online ou verifique o QR code presente no selo da empresa.</div>
                     </div>
                     
                     <div class="faq-item">
                         <div class="faq-question">O que significa ter o selo?</div>
-                        <div class="faq-answer">Significa que a empresa passou por diagnósticos, capacitações, consultorias e atende aos critérios estabelecidos pela Agência Tietê Vivo e/ou CIENSP, com resultado esperado de 8,5% de aumento no faturamento e 75% da presenças das Capacitações propostas!</div>
+                        <div class="faq-answer">Significa que a empresa passou por diagnósticos, capacitações, consultorias e atende aos critérios de qualidade estabelecidos pela Agência Tietê Vivo e/ou CIENSP, com resultado esperado de 8,5% de aumento no faturamento.</div>
                     </div>
                     
                     <div class="faq-item">
                         <div class="faq-question">Posso confiar em empresas chanceladas?</div>
-                        <div class="faq-answer">Sim! Nosso processo de auditoria garante que apenas empresas que atendem os Requisitos recebem a chancela.</div>
+                        <div class="faq-answer">Sim! Nosso processo de auditoria garante que apenas empresas que atendem aos mais altos padrões recebem a chancela.</div>
                     </div>
                 </div>
             </div>
@@ -458,7 +475,6 @@
                     <ul>
                         <li>📧 samiabs@sebraesp.com.br</li>
                         <li>📞 (12) 99676-9700</li>
-                        <li>📞 (18) 99736-1904</li>
                         <li>📍 Araçatuba, SP - Brasil</li>
                         <li>🕒 Sâmia Borges — Consultora de Turismo</li>
                     </ul>
